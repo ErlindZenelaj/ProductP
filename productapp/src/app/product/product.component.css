@@ -1,0 +1,23 @@
+.form {
+    max-width: 800px; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+}
+
+table.narrow-table {
+    width: 100%; 
+}
+
+.mat-mdc-form-field, .narrow-form-field {
+    font-size: 14px;
+    width: 100%;
+    max-width: 350px; 
+}
+
+.container {
+    max-width: 1200px; 
+    margin: 0 auto;
+}

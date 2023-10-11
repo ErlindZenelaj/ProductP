@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #73AFB6;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 300px;
+  }
+  
+  .logo img {
+    width: 70px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding-right: 350px;
+  }
+  
+  .nav-links li {
+    font-size: 18px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .nav-links a.active {
+    font-weight: bold;
+  }
+  

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { NgToastService} from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-login',
@@ -17,9 +20,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toast : NgToastService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,18 +49,19 @@ export class LoginComponent implements OnInit {
         })
         .subscribe(
           (response: any) => {
+            this.authService.login(); // Set authenticated to true
             if (response.token) {
-              alert('Login successfully!');
+              this.toast.success({detail:"Success Message",summary:"Login is Success",duration:5000})
               this.router.navigate(['home']);
             } else {
-              alert('Invalid login, try again!');
+              this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
+
             }
           },
           (error) => {
             console.error('Error:', error);
-            alert(
-              'An error occurred while trying to login. Please try again later.'
-            );
+            this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
+
           }
         );
     }

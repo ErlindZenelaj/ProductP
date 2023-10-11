@@ -10,28 +10,36 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ProductComponent } from './product/product.component';
 import { ToastrModule } from 'ngx-toastr';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuard } from './Guard/auth.guard';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent,
+    ProductComponent,
+    NavbarComponent,
+    DialogComponent
   ],
   imports: [
-    HttpClientModule,
+    NgToastModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -51,12 +59,14 @@ import { HeaderComponent } from './header/header.component';
     MatNativeDateModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
   ],
-  providers: [],
+  providers: [AuthGuard,  NgToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

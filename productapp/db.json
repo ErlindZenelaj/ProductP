@@ -1,0 +1,28 @@
+{
+  "productList": [
+    {
+      "productName": "MacBook",
+      "category": "Electronics",
+      "price": 1200,
+      "date": "2023-10-10T22:00:00.000Z",
+      "id": 1
+    },
+    {
+      "productName": "Apple",
+      "category": "Fruits",
+      "price": 10,
+      "date": "2023-10-10T22:00:00.000Z",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

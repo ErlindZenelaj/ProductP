@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { NgToastService} from 'ng-angular-popup';
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -24,13 +26,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private toast : NgToastService
+    private toast: NgToastService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  
 
   ngOnInit() {}
 
@@ -42,25 +45,45 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMsg = '';
 
-      // Send a POST request to reqres.in for login
       this.http.post('https://reqres.in/api/login', {
           email: this.email,
           password: this.password
         })
         .subscribe(
           (response: any) => {
-            this.authService.login(); // Set authenticated to true
+            this.authService.login(); 
             if (response.token) {
-              this.toast.success({detail:"Success Message",summary:"Login is Success",duration:5000})
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Login has been successful!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // this.toast.success({detail:"Success Message",summary:"Login is Success",duration:5000})
               this.router.navigate(['home']);
             } else {
-              this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Login Failed, Try again later !!!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
 
             }
           },
           (error) => {
             console.error('Error:', error);
-            this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Login Failed, Try again later !!!',
+              showConfirmButton: false,
+              timer: 3500
+            })
+            // this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
 
           }
         );

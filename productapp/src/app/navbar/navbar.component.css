@@ -10,11 +10,11 @@
   .logo {
     display: flex;
     align-items: center;
-    padding-left: 300px;
+    padding-left: 350px;
   }
   
   .logo img {
-    width: 70px;
+    width: 100px;
     height: auto;
     margin-right: 10px;
   }

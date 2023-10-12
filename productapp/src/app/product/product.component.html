@@ -1,17 +1,20 @@
 <app-navbar></app-navbar>
 
+<br>
+
 <div class="form">
     <h2>Product form</h2>
-    <button mat-stroked-button color="primary" (click)="openDialog()">+ Add</button>
 </div>
 
 <div class="container">
-    <div style="margin-top:10px;">
+    <div>
+      <div class="filter">
         <mat-form-field class="narrow-form-field">
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
         </mat-form-field>
-
+        <button mat-stroked-button color="primary"  (click)="openDialog()">+ Add</button>
+      </div>
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort class="narrow-table">
 

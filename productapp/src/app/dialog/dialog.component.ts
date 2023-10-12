@@ -1,7 +1,9 @@
-import { Component,OnInit,Inject } from '@angular/core';
+import { Component,OnInit,Inject, NgZone } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-dialog',
@@ -9,9 +11,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
+alertWitchSuccess() {
+throw new Error('Method not implemented.');
+}
   title = 'productapp';
   productForm !:FormGroup;
-  actionBtn : string = "Save"
+  actionBtn : string = "Save";
 
   constructor(private formBuilder : FormBuilder,
     private api : ApiService,
@@ -39,13 +44,26 @@ export class DialogComponent {
       if(this.productForm.valid){
         this.api.postProduct(this.productForm.value)
         .subscribe({
-          next:(res)=>{
-            alert("Product added successfully!");
+          next:(res)=>{   
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Product Updated Successfully!',
+              showConfirmButton: false,
+              timer: 1500
+            }) 
             this.productForm.reset();
             this.dialogRef.close('save');
           },
           error:()=>{
-            alert("Error while adding the product!")
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Something went wrong!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+           
           }
         })
       } 
@@ -57,14 +75,32 @@ export class DialogComponent {
       this.api.putProduct(this.productForm.value, this.editData.id)
       .subscribe({
         next:(res)=>{
-          alert("Product updated successfully!");
+          Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Product Updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500
+        }) 
+          
           this.productForm.reset();
           this.dialogRef.close('update');
         },
         error:()=>{
-          alert("Error while updating the record!");
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       })
     }
   }
+
+
+
+
+
 

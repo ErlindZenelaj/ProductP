@@ -3,16 +3,37 @@
     {
       "productName": "MacBook",
       "category": "Electronics",
-      "price": 1200,
+      "price": 2200,
       "date": "2023-10-10T22:00:00.000Z",
       "id": 1
     },
     {
       "productName": "Apple",
       "category": "Fruits",
-      "price": 10,
-      "date": "2023-10-10T22:00:00.000Z",
+      "price": 5,
+      "date": "2023-10-03T22:00:00.000Z",
       "id": 2
+    },
+    {
+      "productName": "AppleWatch",
+      "category": "Electronics",
+      "price": 400,
+      "date": "2023-10-11T22:00:00.000Z",
+      "id": 3
+    },
+    {
+      "productName": "Tomato",
+      "category": "Vegetables",
+      "price": 10,
+      "date": "2023-10-11T22:00:00.000Z",
+      "id": 4
+    },
+    {
+      "productName": "Pear",
+      "category": "Fruits",
+      "price": 12,
+      "date": "2023-10-11T22:00:00.000Z",
+      "id": 5
     }
   ],
   "comments": [

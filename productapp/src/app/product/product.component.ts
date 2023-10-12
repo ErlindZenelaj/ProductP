@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +22,7 @@ export class ProductComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private api: ApiService) {
   }
+
   ngOnInit(): void {
     this.getAllProducts();
   }
@@ -43,7 +45,13 @@ export class ProductComponent implements OnInit {
         this.dataSource.sort = this.sort
       },
       error:(err)=>{
-        alert("Error while fetching the Records!");
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error while fetching the Records!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     })
   }
@@ -63,11 +71,23 @@ export class ProductComponent implements OnInit {
     this.api.deleteProduct(id)
     .subscribe({
       next:(res)=>{
-        alert("Product Deleted Successfully!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Product Deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500
+        }) 
         this.getAllProducts();
       },
       error:()=>{
-        alert("Error while deleting the product!")
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error while deleting the product!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     })
   }

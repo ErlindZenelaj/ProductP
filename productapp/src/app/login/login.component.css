@@ -80,7 +80,7 @@ input[type="password"] {
 
 .login-button {
     width: 110%;
-    background-color: #52a2f9;
+    background-color: #73AFB6;
     color: #fff;
     padding: 12px;
     font-size: 15px;
@@ -89,7 +89,7 @@ input[type="password"] {
 }
 
 .login-button:hover {
-    background-color: #a0cbf8;
+    background-color: #73afb6ab;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 

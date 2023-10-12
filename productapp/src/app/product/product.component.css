@@ -2,6 +2,17 @@
     max-width: 800px; 
     margin: 0 auto;
     display: flex;
+    justify-content: center;
+}
+
+.form h2{
+    font-family: 'Trebuchet MS';
+
+}
+
+.filter{
+    margin: 0 auto;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 36px;
@@ -17,7 +28,15 @@ table.narrow-table {
     max-width: 350px; 
 }
 
+.filter button{
+    width: 200px;
+    height: 40px;
+}
+
 .container {
     max-width: 1200px; 
     margin: 0 auto;
 }
+
+
+  

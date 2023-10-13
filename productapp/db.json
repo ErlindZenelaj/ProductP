@@ -29,11 +29,18 @@
       "id": 4
     },
     {
-      "productName": "Pear",
-      "category": "Fruits",
-      "price": 12,
-      "date": "2023-10-11T22:00:00.000Z",
-      "id": 5
+      "productName": "Hamburger",
+      "category": "FastFood",
+      "price": 5,
+      "date": "2023-08-31T22:00:00.000Z",
+      "id": 6
+    },
+    {
+      "productName": "PopKek",
+      "category": "Market",
+      "price": 0.3,
+      "date": "2023-09-30T22:00:00.000Z",
+      "id": 7
     }
   ],
   "comments": [

@@ -8,10 +8,10 @@
       "id": 1
     },
     {
-      "productName": "Apple",
-      "category": "Fruits",
-      "price": 5,
-      "date": "2023-10-03T22:00:00.000Z",
+      "productName": "pc",
+      "category": "Electronics",
+      "price": 1200.5,
+      "date": "2023-10-17T22:00:00.000Z",
       "id": 2
     },
     {
@@ -29,14 +29,7 @@
       "id": 4
     },
     {
-      "productName": "Hamburger",
-      "category": "FastFood",
-      "price": 5,
-      "date": "2023-08-31T22:00:00.000Z",
-      "id": 6
-    },
-    {
-      "productName": "PopKek",
+      "productName": "Popkek",
       "category": "Market",
       "price": 0.3,
       "date": "2023-09-30T22:00:00.000Z",

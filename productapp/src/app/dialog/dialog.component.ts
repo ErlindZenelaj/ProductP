@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
+
 alertWitchSuccess() {
 throw new Error('Method not implemented.');
 }
@@ -22,6 +23,7 @@ throw new Error('Method not implemented.');
     private api : ApiService,
     @Inject(MAT_DIALOG_DATA) public editData : any,
     private dialogRef : MatDialogRef<DialogComponent>){ }
+
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       productName : ['',Validators.required],
@@ -51,7 +53,7 @@ throw new Error('Method not implemented.');
               title: 'Product Updated Successfully!',
               showConfirmButton: false,
               timer: 1500
-            }) 
+            })  
             this.productForm.reset();
             this.dialogRef.close('save');
           },

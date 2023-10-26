@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -31,8 +33,7 @@ export class NavbarComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     }) 
-    this.authService.logout();
-    this.router.navigate(['login']);
+
   }
 
   // logout() {

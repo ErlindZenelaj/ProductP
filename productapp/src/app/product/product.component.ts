@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -35,24 +36,24 @@ export class ProductComponent implements OnInit {
       }
     })
   }
-  getAllProducts(){
-    this.api.getProduct()
-    .subscribe({
-      next:(res)=>{
+
+  getAllProducts() {
+    this.api.getProducts().subscribe({
+      next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort
+        this.dataSource.sort = this.sort;
       },
-      error:(err)=>{
+      error: (err) => {
         Swal.fire({
           position: 'center',
           icon: 'error',
           title: 'Error while fetching the Records!',
           showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    })
+          timer: 1500,
+        });
+      },
+    });
   }
 
   editProduct(row: any) {
@@ -66,30 +67,29 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  deleteProduct(id:number){
-    this.api.deleteProduct(id)
-    .subscribe({
-      next:(res)=>{
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Product Deleted Successfully!',
-          showConfirmButton: false,
-          timer: 1500
-        }) 
-        this.getAllProducts();
-      },
-      error:()=>{
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Error while deleting the product!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    })
-  }
+deleteProduct(id: number) {
+  this.api.deleteProduct(id).subscribe({
+    next: (res) => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Product Deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      this.getAllProducts();
+    },
+    error: () => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error while deleting the product!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+  });
+}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

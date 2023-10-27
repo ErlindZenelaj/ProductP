@@ -1,4 +1,27 @@
-﻿<Properties StartupConfiguration="{DE375BF5-A624-4A93-91E0-4616E186DCF2}|https">
-  <MonoDevelop.Ide.ItemProperties.ProductAPI FirstBuild="True" />
+﻿<Properties StartupConfiguration="{0B3CC8E5-362F-4BF4-B6F5-8781DC09D778}|https">
+  <MonoDevelop.Ide.ItemProperties.NZWalks.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProductsController.cs">
+    <Files>
+      <File FileName="Controllers/ProductsController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ProductAPI" expanded="True" selected="True">
+            <Node name="ProductAPI" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Implementation" expanded="True" />
+                <Node name="Interface" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MultiItemStartupConfigurations />
 </Properties>

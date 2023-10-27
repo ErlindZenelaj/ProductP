@@ -27,7 +27,7 @@ throw new Error('Method not implemented.');
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       productName : ['',Validators.required],
-      category : ['',Validators.required],
+      category: ['', Validators.required], 
       price : ['',Validators.required],
       date : ['',Validators.required]
     });
@@ -41,68 +41,67 @@ throw new Error('Method not implemented.');
     }
   }
 
-  addProduct() {
-    if(!this.editData){
-      if(this.productForm.valid){
-        this.api.postProduct(this.productForm.value)
-        .subscribe({
-          next:(res)=>{   
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Product Updated Successfully!',
-              showConfirmButton: false,
-              timer: 1500
-            })  
-            this.productForm.reset();
-            this.dialogRef.close('save');
-          },
-          error:()=>{
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Something went wrong!',
-              showConfirmButton: false,
-              timer: 1500
-            })
-           
-          }
-        })
-      } 
-    }else {
-      this.updateProduct()
+  createProduct() {
+    if (!this.editData) {
+      if (this.productForm.valid) {
+        this.api.createProduct(this.productForm.value)
+          .subscribe({
+            next: (res) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Product Created Successfully!',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              this.productForm.reset();
+              this.dialogRef.close('save');
+            },
+            error: (error) => {
+              console.error('API Error:', error);
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Something went wrong!',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }            
+          });
+      }
+    } else {
+      this.updateProduct();
     }
-    }
-    updateProduct(){
-      this.api.putProduct(this.productForm.value, this.editData.id)
+  }
+
+  updateProduct() {
+    this.api.updateProduct(this.editData.id, this.productForm.value) 
       .subscribe({
-        next:(res)=>{
+        next: (res) => {
           Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Product Updated Successfully!',
-          showConfirmButton: false,
-          timer: 1500
-        }) 
-          
+            position: 'center',
+            icon: 'success',
+            title: 'Product Updated Successfully!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+  
           this.productForm.reset();
           this.dialogRef.close('update');
         },
-        error:()=>{
+        error: () => {
           Swal.fire({
             position: 'center',
             icon: 'error',
             title: 'Something went wrong!',
             showConfirmButton: false,
-            timer: 1500
-          })
+            timer: 1500,
+          });
         }
-      })
-    }
+      });
   }
-
-
-
-
+  
+  }
+  
 
 

@@ -7,13 +7,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Product Category</mat-label>
-            <mat-select formControlName="category" placeholder="Category">
-                <mat-option value="Market">Market</mat-option>
-                <mat-option value="FastFood">FastFood</mat-option>
-                <mat-option value="Fruits">Fruits</mat-option>
-                <mat-option value="Vegetables">Vegetables</mat-option>
-                <mat-option value="Electronics">Electronics</mat-option>
-            </mat-select>
+            <input formControlName="category" matInput placeholder="Category" />
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Price</mat-label>
@@ -29,5 +23,5 @@
 </div>
 <div mat-dialog-action [align]="'end'" class="button-container">
     <button mat-raised-button color="warn" mat-dialog-close="">Cancel</button>
-    <button mat-raised-button color="primary" (click)="addProduct()">{{ actionBtn }}</button>
+    <button mat-raised-button color="primary" (click)="createProduct()">{{ actionBtn }}</button>
 </div>

@@ -75,31 +75,44 @@ throw new Error('Method not implemented.');
   }
 
   updateProduct() {
-    this.api.updateProduct(this.editData.id, this.productForm.value) 
-      .subscribe({
-        next: (res) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Product Updated Successfully!',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.updateProduct(this.editData.id, this.productForm.value) 
+          .subscribe({
+            next: (res) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Product Updated Successfully!',
+                showConfirmButton: false,
+                timer: 1500,
+              });
   
-          this.productForm.reset();
-          this.dialogRef.close('update');
-        },
-        error: () => {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Something went wrong!',
-            showConfirmButton: false,
-            timer: 1500,
+              this.productForm.reset();
+              this.dialogRef.close('update');
+            },
+            error: () => {
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Something went wrong!',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
           });
-        }
-      });
+      }
+    });
   }
+  
   
   }
   

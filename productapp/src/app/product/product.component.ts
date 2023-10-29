@@ -67,29 +67,43 @@ export class ProductComponent implements OnInit {
     })
   }
 
-deleteProduct(id: number) {
-  this.api.deleteProduct(id).subscribe({
-    next: (res) => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Product Deleted Successfully!',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      this.getAllProducts();
-    },
-    error: () => {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Error while deleting the product!',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    },
-  });
-}
+  deleteProduct(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.deleteProduct(id).subscribe({
+          next: (res) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Product Deleted Successfully!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.getAllProducts();
+          },
+          error: () => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Error while deleting the product!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          },
+        });
+      }
+    });
+  }
+  
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

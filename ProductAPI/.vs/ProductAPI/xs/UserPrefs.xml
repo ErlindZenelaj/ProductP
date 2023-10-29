@@ -1,27 +1,29 @@
-﻿<Properties StartupConfiguration="{0B3CC8E5-362F-4BF4-B6F5-8781DC09D778}|https">
-  <MonoDevelop.Ide.ItemProperties.NZWalks.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+﻿<Properties StartupConfiguration="{4452C5E2-1DBD-49BD-B384-6F1ADFAC4FBD}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ProductAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProductsController.cs">
     <Files>
-      <File FileName="Controllers/ProductsController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ProductsController.cs" Line="112" Column="35" />
+      <File FileName="Repositories/Implementation/ProductRepository.cs" />
+      <File FileName="Repositories/Interface/IProductRepository.cs" />
+      <File FileName="Models/Domain/Product.cs" />
+      <File FileName="Models/DTO/ProductDto.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ProductAPI" expanded="True" selected="True">
+          <Node name="ProductAPI" expanded="True">
             <Node name="ProductAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Repositories" expanded="True">
-                <Node name="Implementation" expanded="True" />
-                <Node name="Interface" expanded="True" />
-              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
-  <MultiItemStartupConfigurations />
 </Properties>

@@ -10,7 +10,6 @@
 
 
 .background-image {
-    /* background-image: url('../../assets/img/loginbackground1.jpg'); */
     background-size: cover;
     background-position: center;
 }
@@ -35,7 +34,7 @@
 
 
 .logo {
-    height: 100vh; 
+    height: 90vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,7 +48,7 @@
 
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
     width: 100%;
     max-width: 400px; 
@@ -79,7 +78,7 @@ input[type="password"] {
 }
 
 .login-button {
-    width: 110%;
+    width: 100%;
     background-color: #73AFB6;
     color: #fff;
     padding: 12px;
@@ -103,4 +102,42 @@ input[type="password"] {
 
 .button-row u:hover {
     text-decoration: underline;
+}
+
+
+@media screen and (max-width: 768px) {
+    .split {
+        height: 100%;
+    }
+
+    .logo {
+        height: 80vh;
+    }
+
+    .form-group {
+        margin-bottom: 5px;
+        text-align: left;
+        width: 80%;
+        max-width: 400px; 
+    }
+
+    input[type="email"],
+    input[type="password"] {
+    width: 100%;
+    padding: 7px;
+    font-size: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-button {
+        width: 80%;
+        background-color: #73AFB6;
+        color: #fff;
+        padding: 6px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+
 }

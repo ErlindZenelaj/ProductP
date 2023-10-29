@@ -26,10 +26,8 @@ namespace ProductAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            // Use the repository to get products
             var productsDomain = await productRepository.GetAll();
 
-            // Map domain Models to DTOs
             var productsDto = productsDomain.Select(productDomain => new ProductDto()
             {
                 Id = productDomain.Id,
@@ -69,7 +67,6 @@ namespace ProductAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddProductRequestDto addProductRequestDto)
         {
-            // Map or Convert DTO to Domain Model
             var productDomainModel = new Product
             {
                 ProductName = addProductRequestDto.ProductName,
@@ -78,12 +75,10 @@ namespace ProductAPI.Controllers
                 Date = addProductRequestDto.Date
             };
 
-            // Save the product using the repository
             var createdProduct = await productRepository.AddProduct(productDomainModel);
 
             if (createdProduct != null)
             {
-                // Map the created product back to DTO
                 var productDto = new ProductDto
                 {
                     Id = createdProduct.Id,
@@ -97,7 +92,6 @@ namespace ProductAPI.Controllers
             }
             else
             {
-                // Handle the case where the product couldn't be created
                 return BadRequest("Failed to create the product");
             }
         }

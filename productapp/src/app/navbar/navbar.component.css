@@ -1,8 +1,10 @@
 .navbar {
   background-color: #73AFB6;
+  display: flex;
+  justify-content: space-around;
 }
 
 .navbar-logo {
-  max-width: 100px;
+  max-width: 150px; 
   height: auto;
 }

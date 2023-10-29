@@ -56,10 +56,9 @@ namespace ProductAPI.Repositories.Implementation
 
             if (productDomain == null)
             {
-                return null; // Handle not found case as needed
+                return null;
             }
 
-            // Update the properties of the Domain Model
             productDomain.ProductName = editProductRequestDto.ProductName;
             productDomain.Category = editProductRequestDto.Category;
             productDomain.Price = editProductRequestDto.Price;
@@ -76,7 +75,7 @@ namespace ProductAPI.Repositories.Implementation
 
             if (productDomain == null)
             {
-                return false; // Handle not found case as needed
+                return false;
             }
 
             dbContext.Products.Remove(productDomain);

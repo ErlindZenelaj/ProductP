@@ -12,12 +12,11 @@ import Swal from 'sweetalert2';
 })
 export class DialogComponent {
 
-alertWitchSuccess() {
-throw new Error('Method not implemented.');
-}
+
   title = 'productapp';
   productForm !:FormGroup;
   actionBtn : string = "Save";
+  addBtn : string = "Add";
 
   constructor(private formBuilder : FormBuilder,
     private api : ApiService,
@@ -33,6 +32,7 @@ throw new Error('Method not implemented.');
     });
 
     if(this.editData){
+      this.addBtn = "Edit";
       this.actionBtn = "Update";
       this.productForm.controls['productName'].setValue(this.editData.productName);
       this.productForm.controls['category'].setValue(this.editData.category);
@@ -77,8 +77,7 @@ throw new Error('Method not implemented.');
   updateProduct() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

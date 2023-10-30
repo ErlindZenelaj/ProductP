@@ -30,12 +30,13 @@ button {
     }
 
     .button-container {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
     }
 
     button {
-        max-width: 100%;
+        max-width: 70%;
         margin: 10px 0;
     }
 }
+

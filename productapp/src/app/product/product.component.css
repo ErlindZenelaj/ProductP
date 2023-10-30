@@ -43,19 +43,20 @@ table.narrow-table {
     text-align: center;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .container {
         padding: 0 5px;
     }
 
     .filter {
+        width: 90%;
         flex-direction: column-reverse;
         align-items: center;
         gap: 20px;
     }
 
     .filter button {
-        width: 100%;
+        width: 60%;
         margin-top: 10px;
     }
 
@@ -63,6 +64,27 @@ table.narrow-table {
         max-width: 100%;
     }
 
-   
+}
+
+@media (max-width: 568px) {
+    .container {
+        padding: 0 5px;
+    }
+
+    .filter {
+        width: 70%;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filter button {
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .mat-mdc-form-field, .narrow-form-field {
+        max-width: 100%;
+    }
 
 }

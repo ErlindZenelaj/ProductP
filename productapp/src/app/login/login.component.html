@@ -11,45 +11,72 @@
                     <button class="btn btn-md" [ngClass]="{'custom-button': activeButton === 'login' && showLogin, 'btn-primary': activeButton === 'login' && showLogin, 'btn-secondary': activeButton === 'register' && showLogin}" (click)="toggleActive('login')">Login</button>
                     <button class="btn btn-md" [ngClass]="{'custom-button': activeButton === 'register' && showRegister, 'btn-primary': activeButton === 'register' && showRegister, 'btn-secondary': activeButton === 'login' && showRegister}" (click)="toggleActive('register')">Register</button>
                 </div>
-                <form *ngIf="showLogin">
-                  <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required [(ngModel)]="loginDto.email">
-                    <label for="floatingInput">Email address</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="loginDto.password">
-                    <label for="floatingPassword">Password</label>
-                  </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                    <label class="form-check-label" for="rememberPasswordCheck">
-                      Remember password
-                    </label>
-                  </div>
-                  <div class="d-grid">
-                    <button class="btn btn-lg custom-button btn-login text-uppercase fw-bold mb-2" type="submit" (click)="login(loginDto)">Sign in</button>
-                    <div class="text-center">
-                      <a class="small" href="#">Forgot password?</a>
-                    </div>
-                  </div>
-                </form>
-                <form *ngIf="showRegister">
+                <form [formGroup]="loginForm" *ngIf="showLogin">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name" [(ngModel)]="registerDto.name">
-                        <label for="floatingInput">Name</label>
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" name="email" [(ngModel)]="loginDto.email">
+                      <label for="floatingInput">Email address</label>
+                      <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="text-danger">
+                        Email is required.
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required [(ngModel)]="registerDto.email">
-                        <label for="floatingInput">Email address</label>
+                      <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger">
+                        Please enter a valid email address.
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="registerDto.password">
-                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password" name="password"  [(ngModel)]="loginDto.password">
+                      <label for="floatingPassword">Password</label>
+                      <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="text-danger">
+                        Password is required.
+                      </div>
+                      <div *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched" class="text-danger">
+                        Password must be at least 6 characters long.
+                      </div>
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                        <label class="form-check-label" for="rememberPasswordCheck">
+                          Remember password
+                        </label>
                       </div>
                       <div class="d-grid">
-                        <button class="btn btn-lg custom-button btn-login text-uppercase fw-bold mb-2" type="submit" (click)="register(registerDto)">Sign Up</button>
+                        <button class="btn btn-lg custom-button btn-login text-uppercase fw-bold mb-2" type="submit" (click)="login(loginDto)">Sign in</button>
+                        <div class="text-center">
+                          <a class="small" href="#">Forgot password?</a>
+                        </div>
                       </div>
-                </form>
+                    </div>
+                  </form>
+                  <form [formGroup]="registerForm" *ngIf="showRegister">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" formControlName="name" name="name" [(ngModel)]="registerDto.name">
+                      <label for="floatingInput">Name</label>
+                      <div *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched" class="text-danger">
+                        Name is required.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" name="email" [(ngModel)]="registerDto.email">
+                      <label for="floatingInput">Email address</label>
+                      <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched" class="text-danger">
+                        Email is required.
+                      </div>
+                      <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched" class="text-danger">
+                        Please enter a valid email address.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password" name="password" [(ngModel)]="registerDto.password">
+                      <label for="floatingPassword">Password</label>
+                      <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="text-danger">
+                        Password is required.
+                      </div>
+                      <div *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched" class="text-danger">
+                        Password must be at least 6 characters long.
+                      </div>
+                    </div>
+                    <div class="d-grid">
+                      <button class="btn btn-lg custom-button btn-login text-uppercase fw-bold mb-2" type="submit" (click)="register(registerDto)">Sign Up</button>
+                    </div>
+                  </form>
               </div>
             </div>
           </div>

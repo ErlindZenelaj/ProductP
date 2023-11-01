@@ -21,11 +21,29 @@ export class LoginComponent implements OnInit {
   registerDto = new Register();
   jwtDto = new JwtAuth();
 
-  
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+
   activeButton: 'login' | 'register' = 'login';
 
   showLogin: boolean = true; // Display the login form by default
   showRegister: boolean = false;
+
+
+  
+  constructor(private authService: AuthenticationService, private router: Router, private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]] 
+    });
+    
+  }
 
   toggleActive(button: 'login' | 'register'): void {
     if (button === 'login') {
@@ -42,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  constructor(private authService: AuthenticationService, private router: Router){}
+
 
   register(registerDto: Register) {
     this.authService.register(registerDto).subscribe(

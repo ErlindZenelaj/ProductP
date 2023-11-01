@@ -66,6 +66,7 @@ import { AuthenticationInterceptor } from './services/interceptor';
     MatSortModule,
     ToastrModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [

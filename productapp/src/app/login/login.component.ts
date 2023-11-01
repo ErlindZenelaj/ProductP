@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { NgToastService} from 'ng-angular-popup';
 import Swal from 'sweetalert2';
-
+import { Login } from '../productmodel/login';
+import { Register } from '../productmodel/register';
+import { JwtAuth } from '../productmodel/jwtAuth';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -14,79 +17,82 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email = '';
-  password = '';
-  errorMsg = '';
-  hide = false;
+  loginDto = new Login();
+  registerDto = new Register();
+  jwtDto = new JwtAuth();
 
-  loginForm: FormGroup;
-
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
-    private toast: NgToastService
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
   
+  activeButton: 'login' | 'register' = 'login';
+
+  showLogin: boolean = true; // Display the login form by default
+  showRegister: boolean = false;
+
+  toggleActive(button: 'login' | 'register'): void {
+    if (button === 'login') {
+      this.activeButton = 'login';
+      this.showLogin = true;
+      this.showRegister = false;
+    } else {
+      this.activeButton = 'register';
+      this.showLogin = false;
+      this.showRegister = true;
+    }
+  }
+
 
   ngOnInit() {}
 
-  login() {
-    if (this.email.trim().length === 0) {
-      this.errorMsg = 'Email is required';
-    } else if (this.password.trim().length === 0) {
-      this.errorMsg = 'Password is required';
-    } else {
-      this.errorMsg = '';
+  constructor(private authService: AuthenticationService, private router: Router){}
 
-      this.http.post('https://reqres.in/api/login', {
-          email: this.email,
-          password: this.password
-        })
-        .subscribe(
-          (response: any) => {
-            this.authService.login(); 
-            if (response.token) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Login has been successful!',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              // this.toast.success({detail:"Success Message",summary:"Login is Success",duration:5000})
-              this.router.navigate(['home']);
-            } else {
-              Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Login Failed, Try again later !!!',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              // this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
-
-            }
-          },
-          (error) => {
-            console.error('Error:', error);
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Login Failed, Try again later !!!',
-              showConfirmButton: false,
-              timer: 3500
-            })
-            // this.toast.error({detail:"Error Message",summary:"Login Failed, Try again later !!!",duration:5000})
-
-          }
-        );
-    }
+  register(registerDto: Register) {
+    this.authService.register(registerDto).subscribe(
+      () => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'You have been registered successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+      (error) => {
+        // Handle registration error here
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Registration Failed!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    );
   }
+  
+  login(loginDto: Login) {
+    this.authService.login(loginDto).subscribe(
+      (jwtDto) => {
+        localStorage.setItem('jwtToken', jwtDto.token);
+        this.router.navigate(['home']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Login Successful!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+      (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Login Failed!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    );
+  }
+  
+  
+  
 }

@@ -131,10 +131,6 @@ namespace ProductAPI.Controllers
             return NoContent();
         }
 
-
-
-
-
     }
 }
 

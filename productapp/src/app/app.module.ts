@@ -19,13 +19,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuard } from './Guard/auth.guard';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { AuthenticationInterceptor } from './services/interceptor';
 
 
 
@@ -37,7 +38,7 @@ import { NgToastModule, NgToastService } from 'ng-angular-popup';
     HomeComponent,
     ProductComponent,
     NavbarComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     NgToastModule,
@@ -59,15 +60,24 @@ import { NgToastModule, NgToastService } from 'ng-angular-popup';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FormsModule,
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     ToastrModule.forRoot(),
+    FormsModule,
 
   ],
-  providers: [AuthGuard,  NgToastService],
+  providers: [
+    AuthGuard,
+    NgToastService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
+  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

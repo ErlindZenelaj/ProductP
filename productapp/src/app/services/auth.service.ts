@@ -5,17 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private authenticated = true;
+  private authTokenKey = 'jwtToken';
 
-  login() {
-    this.authenticated = true;
+  login(token: string) {
+    localStorage.setItem(this.authTokenKey, token);
   }
 
   logout() {
-    this.authenticated = false;
+    localStorage.removeItem(this.authTokenKey);
   }
 
-  isAuthenticated() {
-    return this.authenticated;
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem(this.authTokenKey);
   }
 }
